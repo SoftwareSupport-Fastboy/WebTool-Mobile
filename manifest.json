@@ -1,7 +1,7 @@
 {
     "name": "Web-Tool Supporting Customer",
     "short_name": "Webtool SS",
-    "start_url": "https://locnguyenfastboy.github.io/WebTool-Mobile/",
+    "start_url": "https://softwaresupport-fastboy.github.io/WebTool-Mobile/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
