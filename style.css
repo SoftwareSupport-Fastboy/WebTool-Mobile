@@ -1,0 +1,414 @@
+html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  color: black;
+}
+
+.Navigation_bar {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  margin: 0;
+  margin-bottom: 1vw;
+  padding: 0;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  display: none;
+}
+
+.home, .Calendar, .Annoucements, .More_documents, .Setting {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px 30px 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 1000;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s;
+}
+
+.home {background: linear-gradient(90deg, #a98cfe 0%, #a5edff 100%);}
+
+.home::before, .Calendar::before, .Annoucements::before, .More_documents::before, .Setting::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50% 50% 50% 50%;
+  color: #353a5f;
+}
+
+.home::before {
+  content: "≡";
+  font-size: 36px;
+  background: transparent;
+}
+
+.Calendar::before {
+  content: "C";
+}
+
+.Annoucements::before {
+  content: "A";
+}
+
+.More_documents::before {
+  content: "M";
+}
+
+.Setting::before {
+  content: "...";
+}
+
+.Calendar:hover, .Annoucements:hover, .More_documents:hover, .Setting:hover {width: 140px;}
+
+.Calendar {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%)}
+
+.Annoucements {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
+
+.More_documents {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%)}
+
+.Setting {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%)}
+
+.Calendar:hover:before, .Annoucements:hover:before, .More_documents:hover:before, .Setting:hover:before {
+  background: transparent;
+  white-space: pre;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.Calendar:hover:before {content: "Fastboy\A Calendar";background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);}
+.Annoucements:hover:before {content: "Annouce-\A ments";background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
+.More_documents:hover:before {content: "More\A Documents";background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+.Setting:hover:before {content: "Setting";background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);}
+
+.Frame_view {
+  left: calc(0vw - 1vw);
+  bottom: 10vh;
+  width: 100vw;
+  height: 90vh;   
+  position: absolute;
+  box-sizing: border-box;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.back_frame {
+  width: calc(100vw - 2vw);
+  height: calc(89vh - 2vw);
+  background: white;
+  box-sizing: border-box;
+}
+
+.Frame1 {
+display: none;
+background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);
+}
+
+.Frame2 {
+display: none;
+background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);
+}
+
+.Frame3 {
+display: none;
+background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);
+}
+
+.Frame4 {
+display: none;
+background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);
+}
+
+iframe {
+  width:100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border:none;
+  background-color: transparent;
+  background: transparent;
+}
+
+@media (orientation: portrait) {
+  .portrait {display: flex;}
+
+  .Navigation_bar {
+    flex-direction: row;
+    width: 98vw;
+    height: 10vh;
+    position: absolute;
+    bottom: 0;  
+  }
+}
+
+@media (orientation: landscape) {
+  .landscape {display: flex;}
+  
+  .Navigation_bar {
+    flex-direction: column;
+    width: 80px;
+    height: 100vh;
+    position: absolute;
+    left: 0vw;
+    border-radius: 0;
+    align-items: start;
+    padding-left: 10px;
+  }
+
+  .Frame_view {
+    left: calc(0vw + 80px);
+    top: calc(-0vh);
+    width: calc(100vw - 80px);
+    height: 100vh;
+  }
+
+  .back_frame {
+    width: calc(100% - 2vw);
+    height: calc(100vh - 2vw);
+  }
+
+  .Annoucements:hover:before, .Calendar:hover:before, .More_documents:hover:before, .Setting:hover:before {z-index: 10;}
+
+  .Calendar:hover, .Annoucements:hover, .More_documents:hover, .Setting:hover {width: 140px;}
+}
+
+.Flex {display: flex;}
+
+.columnflex {text-align:center; flex-direction: column;justify-content: start;align-items: center;}
+
+.background-home {
+z-index: -10;
+position: absolute;
+width: 100%;
+height: 100%;
+background: linear-gradient(225deg, #ffd8a4 0%, #f3a9b3 30%, #e07dcf 50%, #b78ce2 75%, #6d7ced 100%);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.blur-box-center {
+background-color: rgba(255, 255, 255, 0.2);
+width: 400px;
+height: 300px;
+position: absolute;
+border-radius: 20px;
+display: flex;
+text-align: center;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.Welcome, .content-after-welcome {
+font-family: 'Dancing Script', cursive;
+font-size: 40px;
+color: #333333;
+user-select: none;
+pointer-events: none;
+-webkit-user-select: none;
+}
+
+.content-after-welcome {font-size: 30px;}
+
+.user-select-none {
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.search-box, .borderunder_searchbox {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 32px;
+  display:flex;
+  align-items:center;
+  width: 80vw;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 16px;
+  border: none;
+  box-sizing: border-box;
+  transform: translate(-50%,0%);
+  position: relative;
+  left: 50%;
+  margin: 0;
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+
+.search-box {background: white; color: black}
+
+.borderunder_searchbox{
+position: absolute;
+width: calc(80vw + 16px);
+height: calc(30px + 10px);
+margin: 0;
+border-radius: 26px;
+}
+
+.Annoucements-color {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
+
+.More_documents-color {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%)}
+
+.Frame_content, .Frame_content_background {
+font-family: Arial, sans-serif;
+font-size: 14px;
+font-weight: normal;
+width: 100%;
+height: 100%;
+background: transparent;
+color: black;
+padding: 5px;
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+}
+
+.Frame_content {
+width: 100%;
+max-width: 100%;
+height: 100%;
+overflow-y: auto;
+overflow-x: hidden;
+word-wrap: break-word;
+overflow-wrap: break-word;
+white-space: normal;
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+.Frame_content table {
+  width: 100%; /* Make the table take the full width of the container */
+  table-layout: fixed; /* Ensure that the columns are distributed evenly */
+}
+
+.Frame_content table td {
+  word-wrap: break-word;  /* Ensure that text in table cells can wrap */
+  overflow: hidden;
+  border: 2px solid #ad4f00;
+  padding: 5px;
+}
+
+.Frame_content table td:nth-child(1) {
+  width: 34%; /* Set the first column to 34% */
+}
+
+.Frame_content table td:nth-child(2) {
+  width: 64%; /* Set the second column to 64% */
+}
+
+a {color: #1E90FF; font-style: italic; text-decoration: underline;}
+
+span {font-family: 'Dancing Script', cursive; font-size: 32px;}
+
+.Style-button {
+  width: 168.75px;
+  height: 75px;
+  border-radius: 75px;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.6), 0 2px 4px rgb(168, 161, 161);
+  margin-top: 35px;
+}
+
+.capnhat, .refreshbutton, .lichBooking3 {
+  display:grid;
+  place-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 1;
+  background: white;
+  color: #57370D;
+  border: 3px solid #57370D;
+}
+
+.capnhat::after {
+  content: "More\A Documents";
+  white-space: pre;
+  font-size: 1.3rem;
+}
+
+.lichBooking3::after {
+  padding-right: 8px;
+  content: "Staff\A Calendar 3.0";
+  white-space: pre;
+  font-size: 1.3rem;
+}
+
+#refreshbutton, #capnhatbutton, #lichbutton {
+  display: inline;
+  width: 1.3em;
+  height: 1.3em;
+  margin: 0;
+  margin-right: 0.5rem;
+  color: #57370D;
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#lichbutton {margin-right: 0.1rem; opacity: 0; animation: dissolveAnimation 3s infinite;}
+
+#capnhatbutton {animation: moveUpDown 1s ease-in-out infinite; transform: translateY(8px);}
+
+#refreshbutton {animation: rotate360 1s linear infinite;}
+
+.rotate {animation: rotate3600 20s ease-out;}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes dissolveAnimation {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}

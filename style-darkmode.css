@@ -1,0 +1,59 @@
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode .home::before, body.dark-mode .Calendar::before, body.dark-mode .Annoucements::before, body.dark-mode .More_documents::before, body.dark-mode .Coming_Soon::before {
+    color: white}
+
+  body.dark-mode .Calendar:hover:before, body.dark-mode .Annoucements:hover:before, body.dark-mode .More_documents:hover:before, body.dark-mode .Coming_Soon:hover:before {
+    background: transparent}
+
+  body.dark-mode .back_frame {
+    background: #121212;
+  }
+
+  body.dark-mode .home::before {background: transparent}
+
+  body.dark-mode .background-home {background: linear-gradient(225deg, #e08b55 0%, #c26a76 30%, #a1479f 50%, #7440a3 75%, #3640a3 100%)}
+
+  body.dark-mode .Welcome, body.dark-mode .content-after-welcome, body.dark-mode span {color: #CCCC99;}
+
+
+  body.dark-mode .Calendar:hover:before {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);}
+  body.dark-mode .Annoucements:hover:before {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
+  body.dark-mode .More_documents:hover:before {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+  body.dark-mode .Coming_Soon:hover:before {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);}
+
+
+  body.dark-mode .Frame_content_background {
+    color: white;
+    background: #121212;
+  --gap: 5em;
+  --line: 1px;
+  --color: rgba(255, 255, 255, 0.2);
+
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+  background-size: var(--gap) var(--gap);
+  }
+  
+  body.dark-mode .Frame_content {color: white;}
+
+  body.dark-mode .inputsearch {color: white;background: #121212;}
+
+ body.dark-mode a {color: #FFD700}
+
+ body.dark-mode .Style-button, body.dark-mode #refreshbutton, body.dark-mode #capnhatbutton, body.dark-mode #lichbutton {background: #57370D;color:#CCCC99}
+
+ body.dark-mode .Style-button {box-shadow: 0 -2px 2px rgba(247, 255, 207, 0.6), 0 2px 4px rgb(120, 102, 23);}
