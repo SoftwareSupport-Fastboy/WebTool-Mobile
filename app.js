@@ -191,3 +191,7 @@ refreshButtoncontainer.addEventListener('click', () => {
     location.reload();
   }, 1000);
 });
+
+
+//Ẩn các nút More Documents và Announcements
+
