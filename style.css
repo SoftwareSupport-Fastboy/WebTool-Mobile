@@ -30,7 +30,7 @@ body {
   display: none;
 }
 
-.home, .Calendar, .Annoucements, .More_documents, .Setting {
+.home, .Calendar, .Annoucements, .More_documents_n_Annoucements, .Setting {
   width: 60px;
   height: 60px;
   border-radius: 30px 30px 30px 30px;
@@ -40,12 +40,12 @@ body {
   font-size: 25px;
   font-weight: 1000;
   font-family: Arial, sans-serif;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 
 .home {background: linear-gradient(90deg, #a98cfe 0%, #a5edff 100%);}
 
-.home::before, .Calendar::before, .Annoucements::before, .More_documents::before, .Setting::before {
+.home::before, .Calendar::before, .Annoucements::before, .More_documents_n_Annoucements::before, .Setting::before {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,25 +69,25 @@ body {
   content: "A";
 }
 
-.More_documents::before {
-  content: "M";
+.More_documents_n_Annoucements::before {
+  content: "M/A";
 }
 
 .Setting::before {
   content: "...";
 }
 
-.Calendar:hover, .Annoucements:hover, .More_documents:hover, .Setting:hover {width: 140px;}
+.Calendar:hover, .Annoucements:hover, .More_documents_n_Annoucements:hover, .Setting:hover {width: 140px;}
 
 .Calendar {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%)}
 
 .Annoucements {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
 
-.More_documents {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%)}
+.More_documents_n_Annoucements {background: linear-gradient(105deg,#E90000 0%,#f1517c 25%,#FAA6FF 50%,#BFFFC7 51%,#18A5A7 100%)}
 
 .Setting {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%)}
 
-.Calendar:hover:before, .Annoucements:hover:before, .More_documents:hover:before, .Setting:hover:before {
+.Calendar:hover:before, .Annoucements:hover:before, .More_documents_n_Annoucements:hover:before, .Setting:hover:before {
   background: transparent;
   white-space: pre;
   text-align: center;
@@ -99,7 +99,7 @@ body {
 
 .Calendar:hover:before {content: "Fastboy\A Calendar";background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);}
 .Annoucements:hover:before {content: "Annouce-\A ments";background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
-.More_documents:hover:before {content: "More\A Documents";background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+.More_documents_n_Annoucements:hover:before {content: "More Documents\A Annoucements";background: linear-gradient(180deg,#E90000 0%,#f1517c 25%,#FAA6FF 50%,#BFFFC7 51%,#18A5A7 100%);font-size: 0.5em;}
 .Setting:hover:before {content: "Setting";background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);}
 
 .Frame_view {
@@ -163,36 +163,7 @@ iframe {
   }
 }
 
-@media (orientation: landscape) {
-  .landscape {display: flex;}
-  
-  .Navigation_bar {
-    flex-direction: column;
-    width: 80px;
-    height: 100vh;
-    position: absolute;
-    left: 0vw;
-    border-radius: 0;
-    align-items: start;
-    padding-left: 10px;
-  }
 
-  .Frame_view {
-    left: calc(0vw + 80px);
-    top: calc(-0vh);
-    width: calc(100vw - 80px);
-    height: 100vh;
-  }
-
-  .back_frame {
-    width: calc(100% - 2vw);
-    height: calc(100vh - 2vw);
-  }
-
-  .Annoucements:hover:before, .Calendar:hover:before, .More_documents:hover:before, .Setting:hover:before {z-index: 10;}
-
-  .Calendar:hover, .Annoucements:hover, .More_documents:hover, .Setting:hover {width: 140px;}
-}
 
 .Flex {display: flex;}
 
@@ -245,7 +216,7 @@ pointer-events: none;
   height: 32px;
   display:flex;
   align-items:center;
-  width: 80vw;
+  width: 90vw;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 16px;
@@ -263,7 +234,7 @@ pointer-events: none;
 
 .borderunder_searchbox{
 position: absolute;
-width: calc(80vw + 16px);
+width: calc(90vw + 16px);
 height: calc(30px + 10px);
 margin: 0;
 border-radius: 26px;
@@ -271,7 +242,7 @@ border-radius: 26px;
 
 .Annoucements-color {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
 
-.More_documents-color {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%)}
+.More_documents_n_Annoucements-color {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%)}
 
 .Frame_content, .Frame_content_background {
 font-family: Arial, sans-serif;
@@ -285,6 +256,14 @@ padding: 5px;
 box-sizing: border-box;
 display: flex;
 flex-direction: column;
+}
+
+.Frame_content_background{
+  display:flex;
+  align-items: start;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 0;
 }
 
 .Frame_content {
@@ -411,4 +390,84 @@ span {font-family: 'Dancing Script', cursive; font-size: 32px;}
   30% { opacity: 1; }
   70% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+.ANOFrame, .MDFrame {
+  margin:0;
+  padding: 0;
+  display:none;
+  width: 95vw;
+  height: calc(75vh - 5px);
+  transform: translate(-50%,-50%);
+  position: absolute;
+  left: 50vw;
+  top: calc(45vh + 5px);
+}
+
+.ANOFrame-button, .MDFrame-button {
+  margin-top:5px;
+  width: 45%;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.ANOFrame-button::before, .MDFrame-button::before {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(1.5rem,3rem,2vw);
+  font-family: 'Dancing Script', cursive;
+}
+
+.ANOFrame-button {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
+.ANOFrame-button::before {content: "Annoucements";}
+
+.MDFrame-button {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+.MDFrame-button::before {content: "More Documents";}
+
+.MDFrame-button:hover .MDFrame, .ANOFrame-button:hover .ANOFrame {display: block;}
+
+@media (orientation: landscape) {
+  .landscape {display: flex;}
+  
+  .Navigation_bar {
+    flex-direction: column;
+    width: 80px;
+    height: 100vh;
+    position: absolute;
+    left: 0vw;
+    border-radius: 0;
+    align-items: start;
+    padding-left: 10px;
+  }
+
+  .Frame_view {
+    left: calc(0vw + 80px);
+    top: calc(-0vh);
+    width: calc(100vw - 80px);
+    height: 100vh;
+  }
+
+  .back_frame {
+    width: calc(100% - 2vw);
+    height: calc(100vh - 2vw);
+  }
+
+  .Annoucements:hover:before, .Calendar:hover:before, .More_documents_n_Annoucements:hover:before, .Setting:hover:before {z-index: 10;}
+
+  .Calendar:hover, .Annoucements:hover, .More_documents:hover, .Setting:hover {width: 140px;}
+
+  .ANOFrame, .MDFrame {
+    margin:0;
+    padding: 0;
+    display:none;
+    width: 92vw;
+    height: calc(85vh - 15px);
+    transform: translate(-50%,0%);
+    position: absolute;
+    left: calc(50vw - 40px);
+    top: 80px;
+  }
+
 }
