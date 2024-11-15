@@ -20,18 +20,33 @@
   </div>
   <div class="Navigation_bar portrait landscape">
     <div class="home"></div>
-    <div class="More_documents">
-      <div class="Frame_view Frame1">
+    <div class="More_documents_n_Annoucements">
+      <div class="Frame_view Frame1 Flex">
         <div class="back_frame">
           <div class="Frame_content_background">
-            <div class="search-box borderunder_searchbox More_documents-color"></div>
-            <input type="text" id="searchBoxMoreDocuments" placeholder="Search for document's name, first letters,..." class="search-box inputsearch" onkeyup="searchContent('moreDocuments')">
-            <div class="Frame_content">
-              <table id="moreDocumentsTable">
-                <tbody id="table-body1"></tbody>
-              </table>
+            <div class="MDFrame-button">
+              <div class="MDFrame">
+                <div class="search-box borderunder_searchbox More_documents_n_Annoucements-color"></div>
+                <input type="text" id="searchBoxMoreDocuments" placeholder="Search for document's name, first letters,..." class="search-box inputsearch" onkeyup="searchContent('moreDocuments')">
+                <div class="Frame_content">
+                  <table id="moreDocumentsTable">
+                    <tbody id="table-body1"></tbody>
+                  </table>
+                </div>
+              </div>
             </div>
+            <div class="ANOFrame-button">
+              <div class="ANOFrame">
+                <div class="search-box borderunder_searchbox Annoucements-color"></div>
+                <input type="text" id="searchBoxAnnouncements" placeholder="Search for document's name, first letters,..." class="search-box inputsearch" onkeyup="searchContent('announcements')">
+                <div class="Frame_content">
+                  <table id="announcementsTable">
+                    <tbody id="table-body2"></tbody>
+                  </table>
+                </div> 
+              </div> 
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,14 +54,7 @@
       <div class="Frame_view Frame2">
         <div class="back_frame">
           <div class="Frame_content_background">
-            <div class="search-box borderunder_searchbox Annoucements-color"></div>
-            <input type="text" id="searchBoxAnnouncements" placeholder="Search for document's name, first letters,..." class="search-box inputsearch" onkeyup="searchContent('announcements')">
-            <div class="Frame_content">
-              <table id="announcementsTable">
-                <tbody id="table-body2"></tbody>
-              </table>
-            </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
