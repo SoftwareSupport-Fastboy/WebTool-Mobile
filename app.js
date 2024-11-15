@@ -101,7 +101,7 @@ function showFrameView(frameView) {
     frameView.style.display = 'flex'; // Show the clicked frameView
 }
 
-const clickableArea1 = document.querySelector('.More_documents');
+const clickableArea1 = document.querySelector('.More_documents_n_Annoucements');
 const frameView1 = document.querySelector('.Frame1');
 clickableArea1.addEventListener('click', function() {
     showFrameView(frameView1); // Show Frame1
@@ -194,4 +194,21 @@ refreshButtoncontainer.addEventListener('click', () => {
 
 
 //Ẩn các nút More Documents và Announcements
+const mdFrameButton = document.querySelector('.MDFrame-button');
+const anoFrameButton = document.querySelector('.ANOFrame-button');
+const mdFrame = document.querySelector('.MDFrame');
+const anoFrame = document.querySelector('.ANOFrame');
+
+function showMDFrame() {
+    mdFrame.style.display = 'block';
+    anoFrame.style.display = 'none';
+}
+
+function showANOFrame() {
+    mdFrame.style.display = 'none';
+    anoFrame.style.display = 'block';
+}
+
+mdFrameButton.addEventListener('click', showMDFrame);
+anoFrameButton.addEventListener('click', showANOFrame);
 
