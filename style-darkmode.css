@@ -57,3 +57,5 @@ body.dark-mode .home::before, body.dark-mode .Calendar::before, body.dark-mode .
  body.dark-mode .Style-button, body.dark-mode #refreshbutton, body.dark-mode #capnhatbutton, body.dark-mode #lichbutton {background: #57370D;color:#CCCC99}
 
  body.dark-mode .Style-button {box-shadow: 0 -2px 2px rgba(247, 255, 207, 0.6), 0 2px 4px rgb(120, 102, 23);}
+
+ body.dark-mode .ANOFrame-button, body.dark-mode .MDFrame-button {color:#57370D}
