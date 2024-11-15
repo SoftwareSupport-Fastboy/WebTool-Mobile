@@ -426,7 +426,6 @@ span {font-family: 'Dancing Script', cursive; font-size: 32px;}
 .MDFrame-button {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
 .MDFrame-button::before {content: "More Documents";}
 
-.MDFrame-button:hover .MDFrame, .ANOFrame-button:hover .ANOFrame {display: block;}
 
 @media (orientation: landscape) {
   .landscape {display: flex;}
