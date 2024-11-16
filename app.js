@@ -1,27 +1,3 @@
-// Lắng nghe sự kiện focus để refresh layout
-window.addEventListener("focus", () => {
-  console.log("Window is focused - refreshing layout");
-
-  // Thực hiện thao tác DOM để refresh layout
-  document.body.style.transform = "scale(1)";
-
-  // Đặt lại cuộn trang nếu cần
-  document.body.scrollTop = 0; 
-});
-
-// Lắng nghe sự kiện visibilitychange nếu người dùng chuyển tab
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) {
-    console.log("User returned to PWA - ensuring layout refresh");
-
-    // Gọi refresh layout logic
-    document.body.offsetHeight; // Trigger reflow để làm mới giao diện
-  }
-});
-
-
-
-
 // Chuyển qua lại dark mode
 const themeSwitchCheckbox = document.querySelector('.theme-switch__checkbox');
 if (localStorage.getItem('darkMode') === 'enabled') {
