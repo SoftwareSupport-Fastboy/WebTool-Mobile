@@ -1,214 +1,475 @@
-// Chuyển qua lại dark mode
-const themeSwitchCheckbox = document.querySelector('.theme-switch__checkbox');
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    themeSwitchCheckbox.checked = true;
-}
-themeSwitchCheckbox.addEventListener('change', function () {
-    if (this.checked) {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('darkMode', 'disabled');
-    }
-});
-
-// đăng ký the service worker
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-            console.log('Service Worker registered with scope:', registration.scope);
-        }).catch((error) => {
-            console.log('Service Worker registration failed:', error);
-        });
-    });
+html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-
-// lấy API từ Google Sheet
-const apiUrl1 = 'https://script.google.com/macros/s/AKfycbxIDXSMWaY0HkqMhNM1zqD-a_uQyN8vOhPLOLYYKKGEQ6rrM-v_iWOMFhmuMLHle0Ii/exec';
-const apiUrl2 = 'https://script.google.com/macros/s/AKfycbzLftLOZkcFz1CuN01pT1RaGKYo2N0aJox0kLsUNgtWNh83Kb1wSk52O2CE9tBdc8VWDg/exec';
-
-// Function to fetch data from any API URL
-async function fetchDataFromApi(apiUrl) {
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-    }
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  color: black;
 }
 
-// Function to format URLs as clickable links
-function formatResponse(response) {
-    var urlRegex = /(https?:\/\/[^\s<]+)/g;
-    return response.replace(urlRegex, function(url) {
-        return '<a href="' + url + '" target="_blank">' + url + '</a>';
-    });
+.Navigation_bar {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  margin: 0;
+  margin-bottom: 1vw;
+  padding: 0;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  display: none;
 }
 
-function updateTable(data, tableBodyId) {
-    const tableBody = document.getElementById(tableBodyId);
-    tableBody.innerHTML = "";  // Clear existing data
-
-    if (data.length === 0) {
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.colSpan = 3;  // Adjust colspan according to your table's column count
-        td.textContent = "No data available";
-        tr.appendChild(td);
-        tableBody.appendChild(tr);
-        return;
-    }
-
-    data.forEach(row => {
-        const tr = document.createElement("tr");
-        row.forEach(cell => {
-            const td = document.createElement("td");
-            td.style.whiteSpace = 'pre-wrap';  // Preserve line breaks in content
-            let formattedCell = cell.replace(/\n/g, "<br>");  // Replace newlines with <br> tags
-            formattedCell = formatResponse(formattedCell);  // Format URLs as links
-            td.innerHTML = formattedCell;
-            tr.appendChild(td);
-        });
-        tableBody.appendChild(tr);
-    });
+.home, .Calendar, .Annoucements, .More_documents_n_Annoucements, .Setting {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px 30px 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 1000;
+  font-family: Arial, sans-serif;
+  transition: all 0.5s;
 }
 
-async function fetchData() {
-    const data1 = await fetchDataFromApi(apiUrl1);  // Fetch data from first API
-    const data2 = await fetchDataFromApi(apiUrl2);  // Fetch data from second API
-
-    updateTable(data1, "table-body1");  // Update table-body1 with data from API 1
-    updateTable(data2, "table-body2");  // Update table-body2 with data from API 2
-}
-fetchData();
-
-
-// Ẩn các khung
-function hideAllFrameViews() {
-    const allFrameViews = document.querySelectorAll('.Frame_view');
-    allFrameViews.forEach(frame => {
-        frame.style.display = 'none';
-    });
+.home::before, .Calendar::before, .Annoucements::before, .More_documents_n_Annoucements::before, .Setting::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 50% 50%;
+  color: #353a5f;
+  font-size: 13px;
+  text-align: center;
 }
 
-function showFrameView(frameView) {
-    hideAllFrameViews(); // Hide all frameViews first
-    frameView.style.display = 'flex'; // Show the clicked frameView
+.home {background: linear-gradient(90deg, #a98cfe 0%, #a5edff 100%);}
+
+.Calendar {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%)}
+
+.Annoucements {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
+
+.More_documents_n_Annoucements {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+
+.Setting {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%)}
+
+.Calendar:hover:before, .Annoucements:hover:before, .More_documents_n_Annoucements:hover:before, .Setting:hover:before {
+  background: transparent;
+  white-space: pre;
+  border-radius: 30px;
 }
 
-const clickableArea1 = document.querySelector('.More_documents_n_Annoucements');
-const frameView1 = document.querySelector('.Frame1');
-clickableArea1.addEventListener('click', function() {
-    showFrameView(frameView1); // Show Frame1
-});
+.Calendar:hover:before {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);}
+.Annoucements:hover:before {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
+.More_documents_n_Annoucements:hover:before {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+.Setting:hover:before {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);}
 
-const clickableArea2 = document.querySelector('.Annoucements');
-const frameView2 = document.querySelector('.Frame2');
-clickableArea2.addEventListener('click', function() {
-    showFrameView(frameView2); // Show Frame2
-});
+.Frame_view {
+  left: calc(0vw - 1vw);
+  bottom: 10.5vh;
+  width: 100vw;
+  height: 89vh;   
+  position: absolute;
+  box-sizing: border-box;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 
-const clickableArea3 = document.querySelector('.Calendar');
-const frameView3 = document.querySelector('.Frame3');
-clickableArea3.addEventListener('click', function() {
-    showFrameView(frameView3); // Show Frame3
-});
+.back_frame {
+  width: calc(100vw - 2vw);
+  height: calc(89vh - 2vw);
+  background: white;
+  box-sizing: border-box;
+}
 
-const clickableArea4 = document.querySelector('.Setting');
-const frameView4 = document.querySelector('.Frame4');
-clickableArea4.addEventListener('click', function() {
-    showFrameView(frameView4); // Show Frame4
-});
+.Frame1 {
+display: none;
+background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);
+}
 
-const homeButton = document.querySelector('.home');
-homeButton.addEventListener('click', function() {
-    hideAllFrameViews(); // Hide all frameViews when home is clicked
-});
+.Frame2 {
+display: none;
+background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);
+}
 
-// Tính năng tìm kiếm documents và chữ cái đầu
-var debounceTimeout;
+.Frame3 {
+display: none;
+background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);
+}
 
-function searchContent(contentType) {
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(function() {
-        var input, filter, table, tr, td, i, j, txtValue;
+.Frame4 {
+display: none;
+background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);
+}
 
-        // Dynamically set input and table based on contentType
-        if (contentType === 'moreDocuments') {
-            input = document.getElementById('searchBoxMoreDocuments');
-            table = document.getElementById('moreDocumentsTable');
-        } else if (contentType === 'announcements') {
-            input = document.getElementById('searchBoxAnnouncements');
-            table = document.getElementById('announcementsTable');
-        }
+iframe {
+  width:100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border:none;
+  background-color: transparent;
+  background: transparent;
+}
 
-        filter = input.value.toUpperCase().split(' '); // Split the input value by spaces
-        tr = table.getElementsByTagName('tr'); // Get all rows in the table
+@media (orientation: portrait) {
+  .portrait {display: flex;}
 
-        // Loop through each row in the table
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName('td'); // Get all cells in the row
-            var found = false;
-
-            // Loop through each cell in the row
-            for (j = 0; j < td.length; j++) {
-                txtValue = td[j].textContent || td[j].innerText; // Get the text content of the cell
-                // Create an array of the first letter of each word in the cell text
-                var firstLetters = txtValue.split(' ').map(function(word) {
-                    return word[0];
-                }).join(''); // Join the first letters together
-
-                // Check if the filter text matches the full text or the first letters of the cell
-                var matchText = filter.every(r => txtValue.toUpperCase().indexOf(r) >= 0); // Match full text
-                var matchFirstLetters = filter.some(r => firstLetters.toUpperCase().indexOf(r) >= 0); // Match first letters
-
-                if (matchText || matchFirstLetters) {
-                    found = true;
-                    break; // If a match is found, no need to check other cells in this row
-                }
-            }
-
-            // Hide or show rows based on whether a match was found
-            if (found) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }, 150); // Debounce the search with a delay of 150ms
+  .Navigation_bar {
+    flex-direction: row;
+    width: 98vw;
+    height: 10vh;
+    position: absolute;
+    bottom: 0;  
+  }
 }
 
 
-// Bấm nút refresh
-const refreshButtoncontainer = document.getElementById('refreshButton_container');
-refreshButtoncontainer.addEventListener('click', () => {
-  setTimeout(() => {
-    location.reload();
-  }, 1000);
-});
 
+.Flex {display: flex;}
 
-//Ẩn các nút More Documents và Announcements
-const mdFrameButton = document.querySelector('.MDFrame-button');
-const anoFrameButton = document.querySelector('.ANOFrame-button');
-const mdFrame = document.querySelector('.MDFrame');
-const anoFrame = document.querySelector('.ANOFrame');
+.columnflex {text-align:center; flex-direction: column;justify-content: start;align-items: center;}
 
-function showMDFrame() {
-    mdFrame.style.display = 'block';
-    anoFrame.style.display = 'none';
+.background-home {
+z-index: -10;
+position: absolute;
+width: 100%;
+height: 100%;
+background: linear-gradient(225deg, #ffd8a4 0%, #f3a9b3 30%, #e07dcf 50%, #b78ce2 75%, #6d7ced 100%);
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-function showANOFrame() {
-    mdFrame.style.display = 'none';
-    anoFrame.style.display = 'block';
+.blur-box-center {
+background-color: rgba(255, 255, 255, 0.2);
+width: 400px;
+height: 300px;
+position: absolute;
+border-radius: 20px;
+display: flex;
+text-align: center;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
-mdFrameButton.addEventListener('click', showMDFrame);
-anoFrameButton.addEventListener('click', showANOFrame);
+.Welcome, .content-after-welcome {
+font-family: 'Dancing Script', cursive;
+font-size: 40px;
+color: #333333;
+user-select: none;
+pointer-events: none;
+-webkit-user-select: none;
+}
 
+.content-after-welcome {font-size: 30px;}
+
+.user-select-none {
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.search-box, .borderunder_searchbox {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 32px;
+  display:flex;
+  align-items:center;
+  width: 90vw;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 16px;
+  border: none;
+  box-sizing: border-box;
+  transform: translate(-50%,0%);
+  position: relative;
+  left: 50%;
+  margin: 0;
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+
+.search-box {background: white; color: black}
+
+.borderunder_searchbox{
+position: absolute;
+width: calc(90vw + 16px);
+height: calc(30px + 10px);
+margin: 0;
+border-radius: 26px;
+}
+
+.Annoucements-color {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
+
+.More_documents_n_Annoucements-color {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%)}
+
+.Frame_content, .Frame_content_background {
+font-family: Arial, sans-serif;
+font-size: 14px;
+font-weight: normal;
+width: 100%;
+height: 100%;
+background: transparent;
+color: black;
+padding: 5px;
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+}
+
+.Frame_content_background{
+  display:flex;
+  align-items: start;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 0;
+  color: black;
+  background: white;
+--gap: 2.5em;
+--line: 1px;
+--color: rgba(0, 0, 0, 0.452);
+
+background-image: linear-gradient(
+    -90deg,
+    transparent calc(var(--gap) - var(--line)),
+    var(--color) calc(var(--gap) - var(--line) + 1px),
+    var(--color) var(--gap)
+  ),
+  linear-gradient(
+    0deg,
+    transparent calc(var(--gap) - var(--line)),
+    var(--color) calc(var(--gap) - var(--line) + 1px),
+    var(--color) var(--gap)
+  );
+background-size: var(--gap) var(--gap);
+}
+
+.Frame_content {
+width: 100%;
+max-width: 100%;
+height: 100%;
+overflow-y: auto;
+overflow-x: hidden;
+word-wrap: break-word;
+overflow-wrap: break-word;
+white-space: normal;
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+.Frame_content::-webkit-scrollbar {
+  width:0;
+}
+
+.Frame_content table {
+  width: 100%; /* Make the table take the full width of the container */
+  table-layout: fixed; /* Ensure that the columns are distributed evenly */
+}
+
+.Frame_content table td {
+  word-wrap: break-word;  /* Ensure that text in table cells can wrap */
+  overflow: hidden;
+  border: 2px solid #ad4f00;
+  padding: 5px;
+}
+
+.Frame_content table td:nth-child(1) {
+  width: 34%; /* Set the first column to 34% */
+}
+
+.Frame_content table td:nth-child(2) {
+  width: 64%; /* Set the second column to 64% */
+}
+
+a {color: #1E90FF; font-style: italic; text-decoration: underline;}
+
+span {font-family: 'Dancing Script', cursive; font-size: 32px;}
+
+.Style-button {
+  width: 168.75px;
+  height: 75px;
+  border-radius: 75px;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.6), 0 2px 4px rgb(168, 161, 161);
+  margin-top: 35px;
+}
+
+.capnhat, .refreshbutton, .lichBooking3 {
+  display:grid;
+  place-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 1;
+  background: white;
+  color: #57370D;
+  border: 3px solid #57370D;
+}
+
+.capnhat::after {
+  content: "More\A Documents";
+  white-space: pre;
+  font-size: 1.3rem;
+}
+
+.lichBooking3::after {
+  padding-right: 8px;
+  content: "Staff\A Calendar 3.0";
+  white-space: pre;
+  font-size: 1.3rem;
+}
+
+#refreshbutton, #capnhatbutton, #lichbutton {
+  display: inline;
+  width: 1.3em;
+  height: 1.3em;
+  margin: 0;
+  margin-right: 0.5rem;
+  color: #57370D;
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#lichbutton {margin-right: 0.1rem; opacity: 0; animation: dissolveAnimation 3s infinite;}
+
+#capnhatbutton {animation: moveUpDown 1s ease-in-out infinite; transform: translateY(8px);}
+
+#refreshbutton {animation: rotate360 1s linear infinite;}
+
+.rotate {animation: rotate3600 20s ease-out;}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes dissolveAnimation {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.ANOFrame, .MDFrame, .Before_MDFrame_ANOFrame {
+  margin:0;
+  padding: 0;
+  display:none;
+  width: 95vw;
+  height: calc(75vh - 5px);
+  transform: translate(-50%,-50%);
+  position: absolute;
+  left: 50vw;
+  top: calc(45vh + 5px);
+}
+
+.Before_MDFrame_ANOFrame{
+  display: grid;
+  place-content: center;
+  font-size: clamp(1.5rem,3rem,2vw);
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+}
+
+.ANOFrame-button, .MDFrame-button {
+  margin-top:5px;
+  width: 45%;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.ANOFrame-button::before, .MDFrame-button::before {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(1.5rem,3rem,2vw);
+}
+
+.ANOFrame-button {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
+.ANOFrame-button::before {content: "Annoucements";}
+
+.MDFrame-button {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+.MDFrame-button::before {content: "More Documents";}
+
+
+@media (orientation: landscape) {
+  .landscape {display: flex;}
+  
+  .Navigation_bar {
+    flex-direction: column;
+    width: 80px;
+    height: 100vh;
+    position: absolute;
+    left: 0vw;
+    border-radius: 0;
+    align-items: start;
+    padding-left: 10px;
+  }
+
+  .Frame_view {
+    left: calc(0vw + 80px);
+    top: calc(-0vh);
+    width: calc(100vw - 80px);
+    height: 100vh;
+  }
+
+  .back_frame {
+    width: calc(100% - 2vw);
+    height: calc(100vh - 2vw);
+  }
+
+  .Annoucements:hover:before, .Calendar:hover:before, .More_documents_n_Annoucements:hover:before, .Setting:hover:before {z-index: 10;}
+
+  .ANOFrame, .MDFrame {
+    margin:0;
+    padding: 0;
+    display:none;
+    width: 92vw;
+    height: calc(85vh - 15px);
+    transform: translate(-50%,0%);
+    position: absolute;
+    left: calc(50vw - 40px);
+    top: 80px;
+  }
+
+}
