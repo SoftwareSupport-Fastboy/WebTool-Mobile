@@ -29,7 +29,7 @@ body.dark-mode .home::before, body.dark-mode .Calendar::before, body.dark-mode .
   body.dark-mode .Frame_content_background {
     color: white;
     background: #121212;
-  --gap: 5em;
+  --gap: 2.5em;
   --line: 1px;
   --color: rgba(255, 255, 255, 0.2);
 
