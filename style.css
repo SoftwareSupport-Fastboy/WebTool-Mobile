@@ -44,70 +44,44 @@ body {
   transition: all 0.5s;
 }
 
-.home {background: linear-gradient(90deg, #a98cfe 0%, #a5edff 100%);}
-
 .home::before, .Calendar::before, .Annoucements::before, .More_documents_n_Annoucements::before, .Setting::before {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  aspect-ratio: 1/1;
+  width: 100%;
+  height: 100%;
   border-radius: 50% 50% 50% 50%;
   color: #353a5f;
+  font-size: 13px;
+  text-align: center;
 }
 
-.home::before {
-  content: "≡";
-  font-size: 36px;
-  background: transparent;
-}
-
-.Calendar::before {
-  content: "C";
-}
-
-.Annoucements::before {
-  content: "A";
-}
-
-.More_documents_n_Annoucements::before {
-  content: "M/A";
-}
-
-.Setting::before {
-  content: "...";
-}
-
-.Calendar:hover, .Annoucements:hover, .More_documents_n_Annoucements:hover, .Setting:hover {width: 140px;}
+.home {background: linear-gradient(90deg, #a98cfe 0%, #a5edff 100%);}
 
 .Calendar {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%)}
 
 .Annoucements {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%)}
 
-.More_documents_n_Annoucements {background: linear-gradient(105deg,#E90000 0%,#f1517c 25%,#FAA6FF 50%,#BFFFC7 51%,#18A5A7 100%)}
+.More_documents_n_Annoucements {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
 
 .Setting {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%)}
 
 .Calendar:hover:before, .Annoucements:hover:before, .More_documents_n_Annoucements:hover:before, .Setting:hover:before {
   background: transparent;
   white-space: pre;
-  text-align: center;
-  font-size: 18px;
-  width: 100%;
-  height: 60px;
   border-radius: 30px;
 }
 
-.Calendar:hover:before {content: "Fastboy\A Calendar";background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);}
-.Annoucements:hover:before {content: "Annouce-\A ments";background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
-.More_documents_n_Annoucements:hover:before {content: "More Documents\A Annoucements";background: linear-gradient(180deg,#E90000 0%,#f1517c 25%,#FAA6FF 50%,#BFFFC7 51%,#18A5A7 100%);font-size: 0.5em;}
-.Setting:hover:before {content: "Setting";background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);}
+.Calendar:hover:before {background: linear-gradient(225deg,#ff3cac 0%,#784ba0 50%,#2b86c5 100%);}
+.Annoucements:hover:before {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
+.More_documents_n_Annoucements:hover:before {background: linear-gradient(225deg,#E90000 0%,#f1517c 50%,#FAA6FF 100%);}
+.Setting:hover:before {background: linear-gradient(225deg,#FFE998 0%,#a88d50 50%,#57370D 100%);}
 
 .Frame_view {
   left: calc(0vw - 1vw);
-  bottom: 10vh;
+  bottom: 10.5vh;
   width: 100vw;
-  height: 90vh;   
+  height: 89vh;   
   position: absolute;
   box-sizing: border-box;
   display: none;
@@ -265,6 +239,25 @@ flex-direction: column;
   justify-content: space-around;
   flex-direction: row;
   padding: 0;
+  color: black;
+  background: white;
+--gap: 2.5em;
+--line: 1px;
+--color: rgba(0, 0, 0, 0.452);
+
+background-image: linear-gradient(
+    -90deg,
+    transparent calc(var(--gap) - var(--line)),
+    var(--color) calc(var(--gap) - var(--line) + 1px),
+    var(--color) var(--gap)
+  ),
+  linear-gradient(
+    0deg,
+    transparent calc(var(--gap) - var(--line)),
+    var(--color) calc(var(--gap) - var(--line) + 1px),
+    var(--color) var(--gap)
+  );
+background-size: var(--gap) var(--gap);
 }
 
 .Frame_content {
@@ -279,6 +272,10 @@ white-space: normal;
 padding: 0;
 margin: 0;
 box-sizing: border-box;
+}
+
+.Frame_content::-webkit-scrollbar {
+  width:0;
 }
 
 .Frame_content table {
@@ -455,8 +452,6 @@ span {font-family: 'Dancing Script', cursive; font-size: 32px;}
   }
 
   .Annoucements:hover:before, .Calendar:hover:before, .More_documents_n_Annoucements:hover:before, .Setting:hover:before {z-index: 10;}
-
-  .Calendar:hover, .Annoucements:hover, .More_documents:hover, .Setting:hover {width: 140px;}
 
   .ANOFrame, .MDFrame {
     margin:0;
