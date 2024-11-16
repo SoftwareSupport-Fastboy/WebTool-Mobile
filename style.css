@@ -390,7 +390,7 @@ span {font-family: 'Dancing Script', cursive; font-size: 32px;}
   100% { opacity: 0; }
 }
 
-.ANOFrame, .MDFrame {
+.ANOFrame, .MDFrame, .Before_MDFrame_ANOFrame {
   margin:0;
   padding: 0;
   display:none;
@@ -400,6 +400,14 @@ span {font-family: 'Dancing Script', cursive; font-size: 32px;}
   position: absolute;
   left: 50vw;
   top: calc(45vh + 5px);
+}
+
+.Before_MDFrame_ANOFrame{
+  display: grid;
+  place-content: center;
+  font-size: clamp(1.5rem,3rem,2vw);
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
 }
 
 .ANOFrame-button, .MDFrame-button {
@@ -415,7 +423,6 @@ span {font-family: 'Dancing Script', cursive; font-size: 32px;}
   width: 100%;
   height: 100%;
   font-size: clamp(1.5rem,3rem,2vw);
-  font-family: 'Dancing Script', cursive;
 }
 
 .ANOFrame-button {background: linear-gradient(225deg,#18A5A7 0%,#BFFFC7 100%);}
